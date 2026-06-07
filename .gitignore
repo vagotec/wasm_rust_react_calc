@@ -1,0 +1,70 @@
+# =====================================
+# React / Vite
+# =====================================
+
+node_modules/
+dist/
+dist-ssr/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Local environment
+*.local
+.env
+.env.*
+
+# =====================================
+# Rust / WebAssembly
+# =====================================
+
+wasm/target/
+
+# Für Library-Projekte meist ignorieren
+wasm/Cargo.lock
+
+# Generierte WASM-Artefakte
+src/wasm_calc/
+
+# =====================================
+# IDE
+# =====================================
+
+.vscode/*
+!.vscode/extensions.json
+
+.idea/
+
+# =====================================
+# Betriebssystem
+# =====================================
+
+.DS_Store
+Thumbs.db
+
+# =====================================
+# Visual Studio
+# =====================================
+
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# Vim
+*.swp
+*.swo
+*~
+
+# =====================================
+# Sonstiges
+# =====================================
+
+coverage/
+.cache/
