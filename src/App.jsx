@@ -1,11 +1,17 @@
 import { useEffect, useState } from "react";
 import init, { calculate } from "./wasm_calc/wasm_calc.js";
+
+import { Card } from "primereact/card";
+import { InputNumber } from "primereact/inputnumber";
+import { InputText } from "primereact/inputtext";
+import { Button } from "primereact/button";
+
 import "./App.css";
 
 function App() {
   const [ready, setReady] = useState(false);
-  const [number1, setNumber1] = useState("");
-  const [number2, setNumber2] = useState("");
+  const [number1, setNumber1] = useState(null);
+  const [number2, setNumber2] = useState(null);
   const [result, setResult] = useState("");
 
   useEffect(() => {
@@ -15,12 +21,12 @@ function App() {
   }, []);
 
   function handleCalculate(operator) {
-    const a = Number(number1);
-    const b = Number(number2);
+    const a = number1 ?? 0;
+    const b = number2 ?? 0;
 
     try {
       const value = calculate(a, b, operator);
-      setResult(value);
+      setResult(String(value));
     } catch (error) {
       setResult(error.toString());
     }
@@ -31,53 +37,47 @@ function App() {
   }
 
   return (
-    <div className="container">
-      <h1>Rust WASM Calculator</h1>
+    <div className="page">
+      <Card title="Rust WASM Calculator" className="calculator-card">
+        <div className="form-row">
+          <label htmlFor="number1">Nr. 1</label>
+          <InputNumber
+            id="number1"
+            value={number1}
+            onValueChange={(e) => setNumber1(e.value)}
+            useGrouping={false}
+            className="input-field"
+          />
+        </div>
 
-      <div className="row">
-        <label>Nr. 1</label>
-        <input
-          type="number"
-          value={number1}
-          onChange={(e) => setNumber1(e.target.value)}
-        />
-      </div>
+        <div className="form-row">
+          <label htmlFor="number2">Nr. 2</label>
+          <InputNumber
+            id="number2"
+            value={number2}
+            onValueChange={(e) => setNumber2(e.value)}
+            useGrouping={false}
+            className="input-field"
+          />
+        </div>
 
-      <div className="row">
-        <label>Nr. 2</label>
-        <input
-          type="number"
-          value={number2}
-          onChange={(e) => setNumber2(e.target.value)}
-        />
-      </div>
+        <div className="form-row">
+          <label htmlFor="result">Result</label>
+          <InputText
+            id="result"
+            value={result}
+            readOnly
+            className="input-field"
+          />
+        </div>
 
-      <div className="row">
-        <label>Result</label>
-        <input
-          type="text"
-          value={result}
-          readOnly
-        />
-      </div>
-
-      <div className="buttons">
-        <button onClick={() => handleCalculate("+")}>
-          +
-        </button>
-
-        <button onClick={() => handleCalculate("-")}>
-          -
-        </button>
-
-        <button onClick={() => handleCalculate("*")}>
-          *
-        </button>
-
-        <button onClick={() => handleCalculate("/")}>
-          /
-        </button>
-      </div>
+        <div className="button-row">
+          <Button label="+" onClick={() => handleCalculate("+")} />
+          <Button label="-" onClick={() => handleCalculate("-")} />
+          <Button label="*" onClick={() => handleCalculate("*")} />
+          <Button label="/" onClick={() => handleCalculate("/")} />
+        </div>
+      </Card>
     </div>
   );
 }
