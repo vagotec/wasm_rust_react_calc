@@ -11,14 +11,32 @@ The user enters two numbers in the browser and selects an operation:
 
 The calculation logic and error handling are implemented in **Rust** and compiled to **WebAssembly**.
 
+## Technologies
+
+- Rust
+- WebAssembly (WASM)
+- wasm-bindgen
+- wasm-pack
+- React
+- Vite
+- PrimeReact
+- PrimeIcons
+- JavaScript
+- CSS
+- Git
+- GitHub
+
 ## Features
 
-* Rust business logic
-* WebAssembly integration
-* React user interface
-* Error handling in Rust
-* Division by zero protection
-* Modern Vite development environment
+- Rust business logic
+- WebAssembly integration
+- React user interface
+- PrimeReact UI components
+- PrimeIcons support
+- Error handling in Rust
+- Division by zero protection
+- Modern responsive UI
+- Vite development environment
 
 ## Project Structure
 
@@ -61,6 +79,17 @@ WebAssembly
    │
    ▼
 Rust Business Logic
+
+UI Framework
+
+The frontend uses PrimeReact components:
+
+- Card
+- InputNumber
+- InputText
+- Button
+
+PrimeReact provides a professional user interface and reduces the amount of custom CSS required.
 ```
 
 ### React Responsibilities
@@ -152,6 +181,7 @@ Install dependencies:
 
 ```bash
 npm install
+npm install primereact primeicons
 ```
 
 ## Build WebAssembly
